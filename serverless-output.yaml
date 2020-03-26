@@ -1,0 +1,64 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  LastLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: LastLambdaApp
+      Handler: lambda.handler
+      Runtime: ruby2.5
+      CodeUri: s3://sdl-lambda/31611572922162fb1aceac9fe56b6caf
+      MemorySize: 512
+      Timeout: 30
+      Events:
+        LastLambdaApi:
+          Type: Api
+          Properties:
+            Path: /
+            Method: ANY
+            RestApiId:
+              Ref: LastLambdaAPI
+  LastLambdaAPI:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: LastLambdaAPI
+      StageName: Prod
+      DefinitionBody:
+        swagger: '2.0'
+        basePath: /Prod
+        info:
+          title:
+            Ref: AWS::StackName
+        paths:
+          /{proxy+}:
+            x-amazon-apigateway-any-method:
+              responses: {}
+              x-amazon-apigateway-integration:
+                uri:
+                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LastLambdaFunction.Arn}/invocations
+                passthroughBehavior: when_no_match
+                httpMethod: POST
+                type: aws_proxy
+          /:
+            get:
+              responses: {}
+              x-amazon-apigateway-integration:
+                uri:
+                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LastLambdaFunction.Arn}/invocations
+                passthroughBehavior: when_no_match
+                httpMethod: POST
+                type: aws_proxy
+  ConfigLambdaPermission:
+    Type: AWS::Lambda::Permission
+    DependsOn:
+    - LastLambdaFunction
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName:
+        Ref: LastLambdaFunction
+      Principal: apigateway.amazonaws.com
+Outputs:
+  LastLambdaAppUrl:
+    Description: App endpoint URL
+    Value:
+      Fn::Sub: https://${LastLambdaAPI}.execute-api.${AWS::Region}.amazonaws.com/Prod/
