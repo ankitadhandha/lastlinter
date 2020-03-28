@@ -122,3 +122,94 @@ see <http://unlicense.org/> or the accompanying {file:UNLICENSE} file.
 [Haml]:           http://haml-lang.com/
 [Erubis]:         http://www.kuwata-lab.com/erubis/
 [Rack]:           https://github.com/rack/rack/wiki# lastlinter
+
+Launch ec2 instance machine AMI: 
+
+Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type - ami-09a5b0b7edf08843d
+
+sudo yum install -y curl gpg gcc gcc-c++ make
+sudo gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | sudo bash -s stable
+sudo usermod -a -G rvm `whoami`
+if sudo grep -q secure_path /etc/sudoers; then sudo sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
+reconnect
+check with rvm --version
+rvm install ruby-2.5.7
+ruby --version
+gem install bundler --no-rdoc --no-ri
+curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+sudo yum install -y nodejs
+gem install rails
+rails --version
+sudo yum install git
+git clone https://github.com/ankitadhandha/lastlinter.git
+enter username password
+sudo yum install docker
+sudo service docker restart
+sudo docker run --name sdlcontainer -it -v $PWD:/var/task -w /var/task lambci/lambda:build-ruby2.5 /bin/bash
+if required make changes in template.yaml file.
+bundle install --deployment
+look at this https://stackoverflow.com/questions/51409209/dockerfile-copy-files-from-amazon-s3-or-another-source-that-needs-credentials/55537106#55537106
+and create role and attach to EC2 instance
+du -sh
+rm -rf vendor/bundle/ruby/2.5.0/cache
+du -sh
+355 M
+find -type d -name ".git"
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-500d5d931fb0/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/sxp.rb-a6201a87d980/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/json-ld-3eb7618536b0/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/json-ld-preloaded-b4a16b53a488/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/jsonlint-f817a0b40174/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-xsd-276267e926a9/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-aggregate-repo-3eab6256caf1/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/sparql-client-8b2723ff9503/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/sparql-2d2905435bf8/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/ld-patch-123066e78d9b/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-isomorphic-2296d9b85edb/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-json-f201f2e3bb9a/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-microdata-68a40811b1a9/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-n3-015ce184efe3/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-normalize-d7576ee0e9f1/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-rdfa-74b60100bc6a/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-rdfxml-5d54dc31182d/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-vocab-7045061c8659/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-reasoner-dc33ae391715/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-tabular-a0f61ab12f85/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-turtle-6d0fafc31f4c/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-trig-daf7ec596ea8/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-trix-14f596807fd7/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/shex-0e03d9f48908/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/linkeddata-eb3167191b95/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rack-linkeddata-0209c3b0110e/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/sinatra-linkeddata-074d7e08ec93/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-do-0c99dea75993/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-spec-484d46c7a474/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rest-client-components-236ac31ed1a0/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-96fc834d6b23/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-vocab-8858ef97ebf5/.git
+rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/json-ld-60970aa39157/.git
+du -sh
+316M
+cd vendor/bundle/ruby/2.5.0/bundler/gems
+du -a --max-depth=1 | sort -n
+rm -rf json-ld-60970aa39157/example-files/
+du -sh /var/task
+290M
+rm -rf sparql-2d2905435bf8/examples
+du -sh /var/task
+290M
+cd /var/task
+rm -rf /var/task/vendor/bundle/ruby/2.5.0/bundler/gems/rdf-normalize-d7576ee0e9f1/spec/w3c-normalization
+rm -rf /var/task/vendor/bundle/ruby/2.5.0/bundler/gems/rdf-n3-015ce184efe3/spec/swap
+rm -rf /var/task/vendor/bundle/ruby/2.5.0/bundler/gems/rdf-n3-015ce184efe3/spec/w3c-n3
+create bucket sdl-lambda on s3 or create using aws cli
+create assets and its subfolders in sdl-lambda bucket.
+aws cloudformation delete-stack --stack-name sdlv2
+aws cloudformation package --template-file template.yaml --output-template-file serverless-output.yaml --s3-bucket sdl-lambda
+aws cloudformation deploy --template-file serverless-output.yaml --stack-name sdlv2 --capabilities CAPABILITY_IAM
+Make changes in application.js file to have new API gateway endpoint for post and get request.
+
+
+
+
