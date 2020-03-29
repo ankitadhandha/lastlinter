@@ -123,39 +123,39 @@ see <http://unlicense.org/> or the accompanying {file:UNLICENSE} file.
 [Erubis]:         http://www.kuwata-lab.com/erubis/
 [Rack]:           https://github.com/rack/rack/wiki# lastlinter
 
-Launch ec2 instance machine AMI: 
+[Launch ec2 instance machine AMI: ]
 
-Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type - ami-09a5b0b7edf08843d
-
-sudo yum install -y curl gpg gcc gcc-c++ make
-sudo gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-curl -sSL https://get.rvm.io | sudo bash -s stable
-sudo usermod -a -G rvm `whoami`
-if sudo grep -q secure_path /etc/sudoers; then sudo sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
-reconnect
-check with rvm --version
-rvm install ruby-2.5.7
-ruby --version
-gem install bundler --no-rdoc --no-ri
-curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
-sudo yum install -y nodejs
-gem install rails
-rails --version
-sudo yum install git
-git clone https://github.com/ankitadhandha/lastlinter.git
-enter username password
-sudo yum install docker
-sudo service docker restart
-sudo docker run --name sdlcontainer -it -v $PWD:/var/task -w /var/task lambci/lambda:build-ruby2.5 /bin/bash
-if required make changes in template.yaml file.
-bundle install --deployment
-look at this https://stackoverflow.com/questions/51409209/dockerfile-copy-files-from-amazon-s3-or-another-source-that-needs-credentials/55537106#55537106
+* Amazon Linux AMI 2018.03.0 (HVM), SSD Volume Type - ami-09a5b0b7edf08843d
+* sudo yum install -y curl gpg gcc gcc-c++ make
+* sudo gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+* curl -sSL https://get.rvm.io | sudo bash -s stable
+* sudo usermod -a -G rvm `whoami`
+* if sudo grep -q secure_path /etc/sudoers; then sudo sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
+*reconnect
+*check with rvm --version
+* rvm install ruby-2.5.7
+* ruby --version
+* gem install bundler --no-rdoc --no-ri
+* curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+* sudo yum install -y nodejs
+* gem install rails
+* rails --version
+* sudo yum install git
+* git clone https://github.com/ankitadhandha/lastlinter.git
+*enter username password
+* sudo yum install docker
+* sudo usermod -a -G rvm `whoami`
+* sudo service docker restart
+* sudo docker run --name sdlcontainer -it -v $PWD:/var/task -w /var/task lambci/lambda:build-ruby2.5 /bin/bash
+*if required make changes in template.yaml file.
+* bundle install --deployment
+*look at this https://stackoverflow.com/questions/51409209/dockerfile-copy-files-from-amazon-s3-or-another-source-that-needs-credentials/55537106#55537106
 and create role and attach to EC2 instance
-du -sh
-rm -rf vendor/bundle/ruby/2.5.0/cache
-du -sh
-355 M
-find -type d -name ".git"
+* du -sh
+* rm -rf vendor/bundle/ruby/2.5.0/cache
+* du -sh
+* 355 M
+* find -type d -name ".git"
 rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/rdf-500d5d931fb0/.git
 rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/sxp.rb-a6201a87d980/.git
 rm -rf ./vendor/bundle/ruby/2.5.0/bundler/gems/json-ld-3eb7618536b0/.git
