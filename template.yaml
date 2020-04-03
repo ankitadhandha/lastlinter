@@ -2,10 +2,10 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 
 Resources:
-  LastLambdaFunction:
+  sdlv4Function:
     Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: LastLambdaApp
+      FunctionName: sdlv4App
       Handler: lambda.handler
       Runtime: ruby2.5
       #Policies:
@@ -15,16 +15,16 @@ Resources:
       MemorySize: 512
       Timeout: 30
       Events:
-        LastLambdaApi:
+        sdlv4Api:
             Type: Api
             Properties:
                 Path: /
                 Method: ANY
-                RestApiId: !Ref LastLambdaAPI
-  LastLambdaAPI:
+                RestApiId: !Ref sdlv4API
+  sdlv4API:
     Type: AWS::Serverless::Api
     Properties:
-      Name: LastLambdaAPI
+      Name: sdlv4API
       StageName: Prod
       DefinitionBody:
         swagger: '2.0'
@@ -37,7 +37,7 @@ Resources:
               responses: {}
               x-amazon-apigateway-integration:
                 uri:
-                  !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LastLambdaFunction.Arn}/invocations'
+                  !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${sdlv4Function.Arn}/invocations'
                 passthroughBehavior: "when_no_match"
                 httpMethod: POST
                 type: "aws_proxy"
@@ -46,17 +46,17 @@ Resources:
               responses: {}
               x-amazon-apigateway-integration:
                 uri:
-                  !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LastLambdaFunction.Arn}/invocations'
+                  !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${sdlv4Function.Arn}/invocations'
                 passthroughBehavior: "when_no_match"
                 httpMethod: POST
                 type: "aws_proxy"
   ConfigLambdaPermission:
     Type: "AWS::Lambda::Permission"
     DependsOn:
-    - LastLambdaFunction
+    - sdlv4Function
     Properties:
       Action: lambda:InvokeFunction
-      FunctionName: !Ref LastLambdaFunction
+      FunctionName: !Ref sdlv4Function
       Principal: apigateway.amazonaws.com
   #FeedbackTable:
   #  Type: AWS::Serverless::SimpleTable
@@ -69,6 +69,6 @@ Resources:
   #      ReadCapacityUnits: 5
   #      WriteCapacityUnits: 5
 Outputs:
-  LastLambdaAppUrl:
+  sdlv4AppUrl:
     Description: App endpoint URL
-    Value: !Sub "https://${LastLambdaAPI}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+    Value: !Sub "https://${sdlv4API}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
