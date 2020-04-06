@@ -50,25 +50,6 @@ Resources:
                 passthroughBehavior: "when_no_match"
                 httpMethod: POST
                 type: "aws_proxy"
-  myAssumeRole:
-    Type: "AWS::IAM::Role"
-    Properties:
-      RoleName: myAssumeRole
-      AssumeRolePolicyDocument:
-        Version: "2012-10-17"
-        Statement: 
-        - Effect: Allow
-        Principal:
-          Service:
-          - lambda.amazonaws.com
-          - codebuild.amazonaws.com
-          - cloudformation.amazonaws.com
-        AWS:
-          - 'arn:aws:iam::012198149561:user/root'
-        Action:
-        - sts:AssumeRole
-      ManagedPolicyArns:
-        - 'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
   ConfigLambdaPermission:
     Type: "AWS::Lambda::Permission"
     DependsOn:
