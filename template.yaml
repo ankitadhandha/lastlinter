@@ -67,7 +67,6 @@ Resources:
         Statement: 
         - Effect: Allow
         Principal: 
-        Service:
         - lambda.amazonaws.com
         - codebuild.amazonaws.com
         Action:
