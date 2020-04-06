@@ -58,6 +58,20 @@ Resources:
       Action: lambda:InvokeFunction
       FunctionName: !Ref sdlv4Function
       Principal: apigateway.amazonaws.com
+  myAssumeRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: myAssumeRole
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement: 
+          - Effect: Allow
+          Principal: 
+            Service:
+              - lambda.amazonaws.com
+              - codebuild.amazonaws.com
+          Action:
+              - sts:AssumeRole
   #FeedbackTable:
   #  Type: AWS::Serverless::SimpleTable
   #  Properties:
