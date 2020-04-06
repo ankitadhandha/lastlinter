@@ -59,11 +59,11 @@ Resources:
         Statement: 
         - Effect: Allow
         Principal:
-        Service:
-        - lambda.amazonaws.com
-        - codebuild.amazonaws.com
+          Service:
+          - lambda.amazonaws.com
+          - codebuild.amazonaws.com
         AWS:
-        - 'arn:aws:iam::012198149561:user/root'
+          - 'arn:aws:iam::012198149561:user/root'
         Action:
         - sts:AssumeRole
       ManagedPolicyArns:
