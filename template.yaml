@@ -63,7 +63,7 @@ Resources:
         - lambda.amazonaws.com
         - codebuild.amazonaws.com
         AWS:
-        - arn:aws:iam::012198149561:user/Ankita
+        - arn:aws:iam::012198149561:user/root
         Action:
         - sts:AssumeRole
   ConfigLambdaPermission:
