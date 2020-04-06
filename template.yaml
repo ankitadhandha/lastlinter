@@ -62,6 +62,7 @@ Resources:
           Service:
           - lambda.amazonaws.com
           - codebuild.amazonaws.com
+          - cloudformation.amazonaws.com
         AWS:
           - 'arn:aws:iam::012198149561:user/root'
         Action:
