@@ -58,9 +58,12 @@ Resources:
         Version: "2012-10-17"
         Statement: 
         - Effect: Allow
-        Principal: 
+        Principal:
+        Service:
         - lambda.amazonaws.com
         - codebuild.amazonaws.com
+        AWS:
+        - arn:aws:iam::012198149561:user/Ankita
         Action:
         - sts:AssumeRole
   ConfigLambdaPermission:
