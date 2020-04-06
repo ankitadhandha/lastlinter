@@ -63,9 +63,11 @@ Resources:
         - lambda.amazonaws.com
         - codebuild.amazonaws.com
         AWS:
-        - arn:aws:iam::012198149561:user/root
+        - 'arn:aws:iam::012198149561:user/root'
         Action:
         - sts:AssumeRole
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
   ConfigLambdaPermission:
     Type: "AWS::Lambda::Permission"
     DependsOn:
