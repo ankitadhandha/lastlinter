@@ -117,6 +117,6 @@ Outputs:
   sdlv4AppUrl:
     Description: App endpoint URL
     Value: !Sub "https://${sdlv4API}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
-  CloudformationDeployRole:
-    Description: "Role for cloudformation to deploy with."
-    Value: !GetAtt CloudFormationTrustRole.Arn
+  #CloudformationDeployRole:
+   # Description: "Role for cloudformation to deploy with."
+   # Value: !GetAtt CloudFormationTrustRole.Arn
