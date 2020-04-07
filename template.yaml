@@ -84,7 +84,7 @@ Resources:
           - Action: ["lambda:*"]
             Resource: !Sub "arn:aws:lambda:${AWS:Region}:${AWS:AccountId}:function:*"
             Effect: Allow
-          - Action: ["apigateway:*]
+          - Action: ["apigateway:*"]
             Resource: !Sub "arn:aws:apigateway:${AWS::Region}::*"
             Effect: Allow
           - Action: ["iam:GetRole", "iam:CreateRole", "iam:DeleteRole"]
