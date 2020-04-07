@@ -58,6 +58,50 @@ Resources:
       Action: lambda:InvokeFunction
       FunctionName: !Ref sdlv4Function
       Principal: apigateway.amazonaws.com
+  CloudFormationTrustRole:
+    Description: Creating service role in IAM for AWS CloudFormation
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${AppName}-cloudformation-role"
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: [cloudformation.amazonaws.com]
+            Action: sts:AssumeRole
+      Path: /
+  CloudFormationRolePolicy:
+    Type: AWS::IAM::Policy
+    DependsOn: CloudFormationTrustRole
+    Description: Setting IAM policy for the service role for AWS CloudFormation
+    Properties:
+      PolicyName: CloudFormationRolePolicy
+      PolicyDocument:
+        Statement:
+          - Action: ["s3:GetObject", "s3:GetObjectVersion", "s3:GetBucketVersioning"]
+            Resource: "*"
+            Effect: Allow
+          - Action: ["lambda:*"]
+            Resource: !Sub "arn:aws:lambda:${AWS:Region}:${AWS:AccountId}:function:*"
+            Effect: Allow
+          - Action: ["apigateway:*]
+            Resource: !Sub "arn:aws:apigateway:${AWS::Region}::*"
+            Effect: Allow
+          - Action: ["iam:GetRole", "iam:CreateRole", "iam:DeleteRole"]
+            Resource: !Sub "arn:aws:iam:${AWS::AccountId}:role/${AppName}-*"
+            Effect: Allow
+          - Action: ["iam:AttachRolePolicy", "iam:DetachRolePolicy"]
+            Resource: !Sub "arn:aws:iam:${AWS::AccountId}:role/${AppName}-*"
+            Effect: Allow
+          - Action: ["iam:PassRole"]
+            Resource: ["*"]
+            Effect: Allow
+          - Action: ["cloudformation:CreateChangeSet"]
+            Resource: !Sub "arn:aws:cloudformation:${AWS::AccountId}:aws:tranform/serverless-2016-10-31"
+            Effect: Allow
+      Roles: [!Ref CloudFormationTrustRole]  
+            
+  
   
   #FeedbackTable:
   #  Type: AWS::Serverless::SimpleTable
@@ -73,3 +117,6 @@ Outputs:
   sdlv4AppUrl:
     Description: App endpoint URL
     Value: !Sub "https://${sdlv4API}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+  CloudformationDeployRole:
+    Description: "Role for cloudformation to deploy with."
+    Value: !GetAtt CloudFormationTrustRole.Arn
