@@ -6,7 +6,7 @@ gemspec
 # Include non-released gems first
 gem "sinatra-linkeddata", git: "https://github.com/ruby-rdf/sinatra-linkeddata", branch: "develop"
 gem "rack-linkeddata",    git: "https://github.com/ruby-rdf/rack-linkeddata", branch: "develop"
-#gem "linkeddata",         git: "https://github.com/ruby-rdf/linkeddata", branch: "develop"
+gem "linkeddata",         git: "https://github.com/ruby-rdf/linkeddata", branch: "develop"
 gem "rdf",                git: "https://github.com/ruby-rdf/rdf", branch: "develop"
 gem "rdf-spec",           git: "https://github.com/ruby-rdf/rdf-spec", branch: "develop"
 
